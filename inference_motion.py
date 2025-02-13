@@ -38,7 +38,7 @@ def inference(network, loader, confs):
 if __name__ == '__main__':
     parser = argparse.ArgumentParser()
     parser.add_argument('--config', type=str, default='configs/EuRoC/motion_body.conf', help='config file path')
-    parser.add_argument('--load', type=str, default=None, help='path for specific model check point, Default is the best model')
+    parser.add_argument('--load', type=str, default=None, help='path for specific model check point, Default is the best model') #输入模型
     parser.add_argument("--device", type=str, default="cuda:0", help="cuda or cpu")
     parser.add_argument('--batch_size', type=int, default=1, help='batch size.')
     parser.add_argument('--seqlen', type=int, default=1000, help='window size.')
@@ -49,7 +49,8 @@ if __name__ == '__main__':
     conf = ConfigFactory.parse_file(args.config)
     conf.train.device = args.device
     conf_name = os.path.split(args.config)[-1].split(".")[0]
-    conf['general']['exp_dir'] = os.path.join(conf.general.exp_dir, conf_name)
+    # conf['general']['exp_dir'] = os.path.join(conf.general.exp_dir, conf_name)
+    conf['general']['exp_dir'] = os.path.join(conf.general.exp_dir)
     conf['device'] = args.device
     dataset_conf = conf.dataset.inference
     
@@ -59,7 +60,8 @@ if __name__ == '__main__':
     os.makedirs(save_folder, exist_ok=True)
 
     if args.load is None:
-        ckpt_path = os.path.join(conf.general.exp_dir, "ckpt/best_model.ckpt")
+        ckpt_path = os.path.join(conf.general.exp_dir, "best_model.ckpt")
+        # ckpt_path = os.path.join(conf.general.exp_dir, "ckpt/best_model.ckpt")
     else:
         ckpt_path = os.path.join(conf.general.exp_dir, "ckpt", args.load)
 

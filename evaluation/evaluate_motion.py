@@ -137,6 +137,12 @@ if __name__ == '__main__':
                     'ATE':torch.sqrt((inf_outstate['pos_dist']**2).mean()).item(),
                     'AVE':inf_outstate['vel_dist'].mean().item(),
                     'RP_RMSE': np.sqrt((inf_rte**2).mean()).numpy().item(),
+                    'Integration Method': "==============Integration==============",
+                    'Integration pos_err': outstate['pos_dist'].mean().item(),
+                    'Integration vel_err': relative_outstate['vel_dist'].mean().item(),
+                    'AirIO Method': "==============AirIO==============",
+                    'AirIO pos_err': inf_outstate['pos_dist'].mean().item(),
+                    'AirIO vel_err': inf_rte.mean().item(),
                     }
                 
                 AllResults.append(result_dic)

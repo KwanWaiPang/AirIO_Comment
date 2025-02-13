@@ -452,7 +452,7 @@ def visualize_velocity(save_prefix, gtstate, outstate, refstate=None, save_folde
     fig, axs = plt.subplots(
         3,
     )
-    fig.suptitle("integrated orientation")
+    fig.suptitle("integrated velocity")
     for i in range(3):
         axs[i].plot(outstate[:, i], color="b", linewidth=0.9)
         axs[i].plot(gtstate[:, i], color="mediumseagreen", linewidth=0.9)

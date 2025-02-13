@@ -1,0 +1,62 @@
+[
+    {
+        "name": "MH_02_easy",
+        "ATE": 2.530659436584817,
+        "AVE": 0.18877704889692698,
+        "RP_RMSE": 0.972156050539075,
+        "Integration Method": "==============Integration==============",
+        "Integration pos_err": 35431.88813105013,
+        "Integration vel_err": 9.474668063515825,
+        "AirIO Method": "==============AirIO==============",
+        "AirIO pos_err": 2.2516072971978067,
+        "AirIO vel_err": 0.807469868411387
+    },
+    {
+        "name": "MH_04_difficult",
+        "ATE": 2.2503146961385756,
+        "AVE": 0.22445296159494285,
+        "RP_RMSE": 1.0092401639709976,
+        "Integration Method": "==============Integration==============",
+        "Integration pos_err": 17034.383004241186,
+        "Integration vel_err": 9.248072741739545,
+        "AirIO Method": "==============AirIO==============",
+        "AirIO pos_err": 2.111607675401745,
+        "AirIO vel_err": 0.8878740819530951
+    },
+    {
+        "name": "V1_03_difficult",
+        "ATE": 3.1073632144485637,
+        "AVE": 0.38263154057907856,
+        "RP_RMSE": 1.511648049992939,
+        "Integration Method": "==============Integration==============",
+        "Integration pos_err": 16898.100169538437,
+        "Integration vel_err": 8.73100262917092,
+        "AirIO Method": "==============AirIO==============",
+        "AirIO pos_err": 2.672330765766064,
+        "AirIO vel_err": 1.3228342084701386
+    },
+    {
+        "name": "V2_02_medium",
+        "ATE": 4.309661365752476,
+        "AVE": 0.33851355967935326,
+        "RP_RMSE": 1.263009365746855,
+        "Integration Method": "==============Integration==============",
+        "Integration pos_err": 11761.063571576806,
+        "Integration vel_err": 8.452118708802605,
+        "AirIO Method": "==============AirIO==============",
+        "AirIO pos_err": 3.5996171944071746,
+        "AirIO vel_err": 1.1390835097147682
+    },
+    {
+        "name": "V1_01_easy",
+        "ATE": 6.52871041920713,
+        "AVE": 0.2774450150679226,
+        "RP_RMSE": 1.2017184870731785,
+        "Integration Method": "==============Integration==============",
+        "Integration pos_err": 24396.605673957074,
+        "Integration vel_err": 10.97922060906811,
+        "AirIO Method": "==============AirIO==============",
+        "AirIO pos_err": 5.919706406806912,
+        "AirIO vel_err": 1.0943105537291968
+    }
+]
