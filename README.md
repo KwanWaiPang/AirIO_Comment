@@ -200,7 +200,9 @@ python evaluation/evaluate_motion.py \
       </td>
     </tr>
   </table>
-   <img src="result/loss_result/V2_02_medium_state.png" width="60%" />
+
+  <img src="result/loss_result/V2_02_medium_state.png" width="60%" />
+  
   <figcaption>
    V2_02_medium_state
   </figcaption>
