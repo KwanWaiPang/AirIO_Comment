@@ -209,6 +209,7 @@ python evaluation/evaluate_motion.py \
 </div>
 
 * 虽然看似有不少的drift，但是跟IMU预积分比起来少很多，且此处仅仅是用了AirIO的motion network而已（应该是用速度积分计算轨迹的）
+* 上图应该主要对比的是估算的速度的情况
 
 ## 运行EKF
 * EKF的结果会保存为`${SEQUENCE_NAME}_ekf_poses.npy` and `${SEQUENCE_NAME}_ekf_results.npy`
@@ -310,6 +311,47 @@ python EKF/IMUofflinerunner.py \
   </figcaption>
 </div>
 
+<div align="center">
+  <table style="border: none; background-color: transparent;">
+    <tr align="center">
+      <td style="width: 50%; border: none; padding: 0.01; background-color: transparent; vertical-align: middle;">
+        <img src="EKFresult/loss_result/V2_02_medium_ekf_result.png" width="100%" />
+        ekf_result
+      </td>
+      <td style="width: 50%; border: none; padding: 0.01; background-color: transparent; vertical-align: middle;">
+        <img src="EKFresult/loss_result/V2_02_medium_bias.png" width="100%" />
+        bias
+      </td>
+    </tr>
+    <tr align="center">
+      <td style="width: 50%; border: none; padding: 0.01; background-color: transparent; vertical-align: middle;">
+        <img src="EKFresult/loss_result/EKF_rot_V2_02_medium_orientation_compare.png" width="100%" />
+        EKF_rot_orientation_compare
+      </td>
+      <td style="width: 50%; border: none; padding: 0.01; background-color: transparent; vertical-align: middle;">
+        <img src="EKFresult/loss_result/EKF_vel_V2_02_medium.png" width="100%" />
+        EKF_vel
+      </td>
+    </tr>
+  </table>
+  <figcaption>
+   V2_02_medium
+  </figcaption>
+</div>
+
+* 最后的V1_01_easy报错如下
+~~~
+odict_keys(['mode', 'coordinate', 'rot_type', 'rot_path', 'data_list', 'gravity'])
+ConfigTree([('name', 'Euroc'), ('window_size', 1000), ('step_size', 1000), ('data_root', '/home/gwp/AirIMU/Euroc_dataset'), ('data_drive', ['V1_01_easy'])])
+/home/gwp/AirIMU/Euroc_dataset V1_01_easy
+loaded: /home/gwp/AirIMU/Euroc_dataset, interpolate: True, gravity: 9.81007
+Traceback (most recent call last):
+  File "/home/gwp/Air-IO/EKF/IMUofflinerunner.py", line 174, in <module>
+    dataset_inf = SeqInfDataset(data_conf.data_root, data_name, inference_state, device = args.device, name = data_conf.name,duration=1, step_size=1, drop_last=False, conf = dataset_conf)
+  File "/home/gwp/Air-IO/datasets/dataset.py", line 130, in __init__
+    self.data["acc"][:-1] += inference_state["correction_acc"][:, time_cut:].cpu()[0]
+RuntimeError: The size of tensor a (28711) must match the size of tensor b (28940) at non-singleton dimension 0
+~~~
 
 ## Evaluate & Visualize EKF Results
 ```bash
@@ -318,4 +360,33 @@ python evaluation/evaluate_ekf.py \
     --exp EKFresult/loss_result \
     --savedir ./result/loss_result_ekf \
     --seqlen 1000
+```
+
+```json
+[
+    {
+        "name": "MH_02_easy",
+        "ATE(EKF)": 2.4776350567640453,
+        "RTE(EKF)": 0.8392048606301833,
+        "RP_RMSE(EKF)": 0.986514639276038
+    },
+    {
+        "name": "MH_04_difficult",
+        "ATE(EKF)": 2.3080264050205286,
+        "RTE(EKF)": 0.8697517581648648,
+        "RP_RMSE(EKF)": 1.0046212473704987
+    },
+    {
+        "name": "V1_03_difficult",
+        "ATE(EKF)": 3.050263789492288,
+        "RTE(EKF)": 1.3646776743637254,
+        "RP_RMSE(EKF)": 1.5521645175050485
+    },
+    {
+        "name": "V2_02_medium",
+        "ATE(EKF)": 4.20582509824693,
+        "RTE(EKF)": 1.1778671729026637,
+        "RP_RMSE(EKF)": 1.3132037593617787
+    }
+]
 ```
