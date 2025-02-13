@@ -110,8 +110,8 @@ python evaluation/evaluate_motion.py \
     --seqlen 1000
 ```
 
-### 自己生成的效果
-* 输出的loss结果
+
+* 输出的loss结果：
 ```json
 [
     {
